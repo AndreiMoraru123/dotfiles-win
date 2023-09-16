@@ -72,6 +72,12 @@ map <leader>pr <Action>(PyRunFileInConsole)
 "" New python file (opens in user folder)
 map <leader>pf <Action>(NewPythonFile)
 
+"" Expand python type annotations (only if collapsed)
+map <leader>xp <Action>(ExpandPythonTypeAnnotations)
+
+"" Collapse python type annotations
+map <leader>cl <Action>(CollapsePythonTypeAnnotations)
+
 "" Stop execution
 map <leader>so <Action>(Stop)
 
@@ -89,4 +95,4 @@ vnoremap <leader>y "+y
 nnoremap <leader>y "+y
 
 "" Copy the whole file
-nnoremap <leader>Y gg"+y
+nnoremap <leader>Y gg"+yG
