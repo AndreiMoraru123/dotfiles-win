@@ -1,1 +1,1 @@
-For a python centric experience
+For a Python centric experience
