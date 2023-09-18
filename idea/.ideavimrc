@@ -96,3 +96,9 @@ nnoremap <leader>y "+y
 
 "" Copy the whole file
 nnoremap <leader>Y gg"+yG
+
+"" Uppercase the whole word
+nnoremap <Leader>u viwU
+
+"" Lowercase the whole word
+nnoremap <Leader>l viw
