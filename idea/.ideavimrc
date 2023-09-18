@@ -101,4 +101,4 @@ nnoremap <leader>Y gg"+yG
 nnoremap <Leader>u viwU
 
 "" Lowercase the whole word
-nnoremap <Leader>l viw
+nnoremap <Leader>l viwu
