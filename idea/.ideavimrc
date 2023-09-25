@@ -79,7 +79,7 @@ map <leader>xp <Action>(ExpandPythonTypeAnnotations)
 map <leader>cl <Action>(CollapsePythonTypeAnnotations)
 
 "" Stop execution
-map <leader>so <Action>(Stop)
+map <leader>s <Action>(Stop)
 
 " Move lines up/down with SHIFT + K/J
 vnoremap J :m '>+1<CR>gv=gv
