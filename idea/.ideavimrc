@@ -78,6 +78,9 @@ map <leader>xp <Action>(ExpandPythonTypeAnnotations)
 "" Collapse python type annotations
 map <leader>cl <Action>(CollapsePythonTypeAnnotations)
 
+"" Show documentation pop-up
+map <leader>q <Action>(QuickJavaDoc)
+
 "" Stop execution
 map <leader>s <Action>(Stop)
 
