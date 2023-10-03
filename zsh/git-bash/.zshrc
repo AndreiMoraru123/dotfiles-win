@@ -120,3 +120,6 @@ source ~/powerlevel10k/powerlevel10k.zsh-theme
 eval "$('/c/Program Files/Anaconda3/Scripts/conda.exe' 'shell.zsh' 'hook' | sed -e 's/"$CONDA_EXE" $_CE_M $_CE_CONDA "$@"/"$CONDA_EXE" $_CE_M $_CE_CONDA "$@" | tr -d \x27\\r\x27/g')"
 # . "/C/Program Files/Anaconda3/etc/profile.d/conda.sh"
 # <<< conda initialize <<<
+
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
