@@ -105,3 +105,23 @@ nnoremap <Leader>u viwU
 
 "" Lowercase the whole word
 nnoremap <Leader>l viwu
+
+" Set Harpoon targets
+nmap <Leader>1 :action SetHarpoon1<CR>
+nmap <Leader>2 :action SetHarpoon2<CR>
+nmap <Leader>3 :action SetHarpoon3<CR>
+nmap <Leader>4 :action SetHarpoon4<CR>
+nmap <Leader>5 :action SetHarpoon5<CR>
+
+" Go to Harpoon targets
+nmap 1 :action GotoHarpoon1<CR>
+nmap 2 :action GotoHarpoon2<CR>
+nmap 3 :action GotoHarpoon3<CR>
+nmap 4 :action GotoHarpoon4<CR>
+nmap 5 :action GotoHarpoon5<CR>
+
+" Show Harpoon UI
+nmap <C-e> :action ShowHarpoon<CR>
+
+" Add current file to Harpoon
+nmap <C-a> :action AddToHarpoon<CR>
