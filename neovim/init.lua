@@ -60,6 +60,8 @@ vim.cmd [[
   Plug 'mfussenegger/nvim-dap'
   Plug 'rcarriga/nvim-dap-ui'
   Plug 'mfussenegger/nvim-dap-python'
+  Plug 'mxsdev/nvim-dap-vscode-js', { 'requires': 'mfussenegger/nvim-dap' }
+  Plug 'microsoft/vscode-js-debug', { 'do': 'npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out' }
   " Docs
   Plug 'folke/neodev.nvim'
   call plug#end()
@@ -74,7 +76,7 @@ vim.cmd [[
 -- Key mappings
 vim.g.mapleader = " "
 vim.api.nvim_set_keymap('n', '<leader>pv', ':Vex<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader><CR>', ':so C:/Users/MON1CLJ/AppData/Local/nvim/init.lua<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader><CR>', ':so C:/Users/Andrei/AppData/Local/nvim/init.lua<CR>', { noremap = true, silent = true })
 
 -- For vnoremap commands
 vim.api.nvim_set_keymap('v', 'J', ':m \'>+1<CR>gv=gv', { noremap = true, silent = true })
@@ -132,7 +134,7 @@ end)
 -- Treesitter
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
-  ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "python"},
+  ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "python", "typescript", "javascript"},
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
@@ -212,6 +214,25 @@ lspconfig.pyright.setup({
     end
 })
 
+-- Set up tsserver for TS/JS
+lspconfig.tsserver.setup({
+    on_attach = function(client, bufnr)
+        local opts = { noremap=true, silent=true }
+
+        -- Key mappings for LSP functionalities
+        local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+        buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+        buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+        buf_set_keymap('n', '<leader>vws', '<cmd>lua vim.lsp.buf.workspace_symbol()<CR>', opts)
+        buf_set_keymap('n', '<leader>vd', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+        buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+        buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+        buf_set_keymap('n', '<leader>vca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+        buf_set_keymap('n', '<leader>vrr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+        buf_set_keymap('n', '<leader>vrn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+    end
+})
+
 -- Autocompletion with nvim-cmp
 local cmp = require('cmp')
 cmp.setup({
@@ -219,9 +240,9 @@ cmp.setup({
         completeopt = 'menu,menuone,noinsert',
     },
     mapping = {
-        ['<C-p>'] = cmp.mapping.select_prev_item(),
-        ['<C-n>'] = cmp.mapping.select_next_item(),
-        ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+        ['<Up>'] = cmp.mapping.select_prev_item(),
+        ['<Down>'] = cmp.mapping.select_next_item(),
+        ['<CR>'] = cmp.mapping.confirm({ select = true }),
         ['<C-Space>'] = cmp.mapping.complete(),
     },
     sources = {
