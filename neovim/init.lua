@@ -57,6 +57,7 @@ vim.cmd [[
   " Icons
   Plug 'nvim-tree/nvim-web-devicons'
   Plug 'ryanoasis/vim-devicons'
+  Plug 'bryanmylee/vim-colorscheme-icons'
   " Debugger
   Plug 'mfussenegger/nvim-dap'
   Plug 'rcarriga/nvim-dap-ui'
