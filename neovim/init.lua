@@ -56,6 +56,7 @@ vim.cmd [[
   Plug 'nvim-lualine/lualine.nvim'
   " Icons
   Plug 'nvim-tree/nvim-web-devicons'
+  Plug 'ryanoasis/vim-devicons'
   " Debugger
   Plug 'mfussenegger/nvim-dap'
   Plug 'rcarriga/nvim-dap-ui'
