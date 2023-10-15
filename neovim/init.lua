@@ -126,6 +126,10 @@ vim.api.nvim_set_keymap('i', '(', '()<left>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('i', '[', '[]<left>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('i', '{', '{}<left>', { noremap = true, silent = true })
 
+-- Complete closing quotes
+vim.api.nvim_set_keymap('i', '"', '""<left>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('i', "'", "''<left>", { noremap = true, silent = true })
+
 -- Telescope
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
