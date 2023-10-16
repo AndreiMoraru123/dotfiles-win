@@ -371,6 +371,7 @@ vim.api.nvim_set_keymap('n', '<leader>dr', '<Cmd>lua require"dap".restart()<CR>'
 -- Debugpy
 require('dap-python').setup('')
 require('dap-python').test_runner = 'pytest'
+require("nvim-dap-virtual-text").setup()
 require("neodev").setup({
   library = { plugins = { "nvim-dap-ui" }, types = true },
 })
