@@ -369,10 +369,24 @@ vim.api.nvim_set_keymap('n', '<leader>q', '<Cmd>lua require"dap".close()<CR>', {
 vim.api.nvim_set_keymap('n', '<leader>dr', '<Cmd>lua require"dap".restart()<CR>', { noremap = true, silent = true })
 
 -- Debugpy
+require("dapui").setup()
 require('dap-python').setup('')
 require('dap-python').test_runner = 'pytest'
 require("nvim-dap-virtual-text").setup()
 require("neodev").setup({
   library = { plugins = { "nvim-dap-ui" }, types = true },
 })
+
+-- UI
+local dap, dapui = require("dap"), require("dapui")
+dapui.setup()
+dap.listeners.after.event_initialized["dapui_config"] = function()
+  dapui.open()
+end
+dap.listeners.before.event_terminated["dapui_config"] = function()
+  dapui.close()
+end
+dap.listeners.before.event_exited["dapui_config"] = function()
+  dapui.close()
+end
 
