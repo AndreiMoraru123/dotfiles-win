@@ -309,9 +309,11 @@ require('lualine').setup {
 
 -- RUNNING TERMINAL PROCESSES
 -- Navigate through buffers
-vim.api.nvim_set_keymap('n', '<leader>n', ':bnext<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>p', ':bprevious<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader><Tab>', ':b#<CR>', { noremap = true, silent = true })  -- Switch between the current and previous buffer.
+vim.api.nvim_set_keymap('n', '<leader>nb', ':bnext<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>pb', ':bprevious<CR>', { noremap = true, silent = true })
+
+-- Switch between the current and previous buffer.
+vim.api.nvim_set_keymap('n', '<leader><Tab>', ':b#<CR>', { noremap = true, silent = true })
 
 -- Delete all buffers
 vim.api.nvim_set_keymap('n', '<leader>bd', ':bdelete<CR>', { noremap = true, silent = true })
@@ -341,7 +343,7 @@ vim.api.nvim_set_keymap('n', '<leader>pl', ':belowright split | terminal pylint 
 vim.api.nvim_set_keymap('n', '<leader>pd', ':belowright split | terminal pydocstyle --convention=google %<CR>', { noremap = true, silent = true })
 
 -- Run black on the current file
-vim.api.nvim_set_keymap('n', '<leader>pb', ':!black --config ' .. get_git_root() .. '/pyproject.toml %<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>bl', ':!black --config ' .. get_git_root() .. '/pyproject.toml %<CR>', { noremap = true, silent = true })
 
 -- Automatically change the working directory to the directory of the current Python file whenever a new Python file is opened
 vim.cmd('autocmd FileType python cd %:p:h')
