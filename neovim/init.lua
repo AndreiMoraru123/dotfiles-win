@@ -363,7 +363,7 @@ vim.api.nvim_set_keymap('n', '<leader>s', '<Cmd>lua require"dap".step_into()<CR>
 vim.api.nvim_set_keymap('n', '<leader>r', '<Cmd>lua require"dap".repl.open()<CR>', { noremap = true, silent = true })
 
 -- Stop debugging
-vim.api.nvim_set_keymap('n', '<leader>q', '<Cmd>lua require"dap".stop()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>q', '<Cmd>lua require"dap".close()<CR>', { noremap = true, silent = true })
 
 -- Restart debugging
 vim.api.nvim_set_keymap('n', '<leader>dr', '<Cmd>lua require"dap".restart()<CR>', { noremap = true, silent = true })
