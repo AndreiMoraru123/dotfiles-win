@@ -62,6 +62,7 @@ vim.cmd [[
   Plug 'mfussenegger/nvim-dap'
   Plug 'rcarriga/nvim-dap-ui'
   Plug 'mfussenegger/nvim-dap-python'
+  Plug 'theHamsta/nvim-dap-virtual-text'
   Plug 'mxsdev/nvim-dap-vscode-js', { 'requires': 'mfussenegger/nvim-dap' }
   Plug 'microsoft/vscode-js-debug', { 'do': 'npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out' }
   " Docs
