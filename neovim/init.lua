@@ -326,7 +326,7 @@ vim.api.nvim_set_keymap('t', '<C-c>', '<C-\\><C-n>:call jobstop(&channel)<CR>', 
 
 -- RUNNING PYTHON
 -- Run the current file with python
-vim.api.nvim_set_keymap('n', '<leader>pr', ':belowright split | terminal python %<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>py', ':belowright split | terminal python %<CR>', { noremap = true, silent = true })
 
 -- Run pytest on the current file
 vim.api.nvim_set_keymap('n', '<leader>pt', ':belowright split | terminal pytest %<CR>', { noremap = true, silent = true })
