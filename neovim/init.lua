@@ -67,6 +67,8 @@ vim.cmd [[
   Plug 'microsoft/vscode-js-debug', { 'do': 'npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out' }
   " Docs
   Plug 'folke/neodev.nvim'
+  " Auto-pairing
+  Plug 'windwp/nvim-autopairs'
   call plug#end()
 ]]
 
@@ -122,15 +124,6 @@ vim.keymap.set("n", "<leader>rp", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left>
 -- Make file executable
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
--- Complete closing brackets
-vim.api.nvim_set_keymap('i', '(', '()<left>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('i', '[', '[]<left>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('i', '{', '{}<left>', { noremap = true, silent = true })
-
--- Complete closing quotes
-vim.api.nvim_set_keymap('i', '"', '""<left>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('i', "'", "''<left>", { noremap = true, silent = true })
-
 -- Telescope
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
@@ -183,10 +176,14 @@ require'nvim-treesitter.configs'.setup {
     -- Instead of true it can also be a list of languages
     additional_vim_regex_highlighting = false,
   },
+
   indent = {
     enable = true, 
   },
 }
+
+-- Auto-pairing
+require("nvim-autopairs").setup {}
 
 -- Harpoon
 local mark = require("harpoon.mark")
