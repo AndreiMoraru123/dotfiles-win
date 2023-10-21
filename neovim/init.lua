@@ -210,6 +210,16 @@ vim.g.rainbow_delimiters = {
     },
 }
 
+-- Set the autocommand for Nightfox color integration
+vim.cmd [[
+  au ColorSchemePre nightfox highlight link RainbowDelimiterRed NightfoxRed
+  au ColorSchemePre nightfox highlight link RainbowDelimiterYellow NightfoxYellow
+  au ColorSchemePre nightfox highlight link RainbowDelimiterBlue NightfoxBlue
+  au ColorSchemePre nightfox highlight link RainbowDelimiterOrange NightfoxOrange
+  au ColorSchemePre nightfox highlight link RainbowDelimiterGreen NightfoxGreen
+  au ColorSchemePre nightfox highlight link RainbowDelimiterViolet NightfoxViolet
+  au ColorSchemePre nightfox highlight link RainbowDelimiterCyan NightfoxCyan
+]]
 
 -- Harpoon
 local mark = require("harpoon.mark")
