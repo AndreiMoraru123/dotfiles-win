@@ -246,6 +246,7 @@ local lspconfig = require('lspconfig')
 
 -- Doge
 vim.g.doge_doc_standard_python = 'google'
+vim.api.nvim_set_keymap('n', '<Leader>g', '<Plug>(doge-generate)', { noremap = true, silent = true })
 
 -- Set up pyright for Python
 lspconfig.pyright.setup({
