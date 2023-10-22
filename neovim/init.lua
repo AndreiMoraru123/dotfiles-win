@@ -69,6 +69,8 @@ vim.cmd [[
   Plug 'microsoft/vscode-js-debug', { 'do': 'npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out' }
   " Docs
   Plug 'folke/neodev.nvim'
+  " Docstrings
+  Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
   " Auto-pairing
   Plug 'windwp/nvim-autopairs'
   call plug#end()
@@ -241,6 +243,9 @@ vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
 
 -- LSP Setup
 local lspconfig = require('lspconfig')
+
+-- Doge
+vim.g.doge_doc_standard_python = 'google'
 
 -- Set up pyright for Python
 lspconfig.pyright.setup({
