@@ -200,13 +200,13 @@ vim.g.rainbow_delimiters = {
         lua = 'rainbow-blocks',
     },
     highlight = {
-        'RainbowDelimiterRed',
         'RainbowDelimiterYellow',
-        'RainbowDelimiterBlue',
-        'RainbowDelimiterOrange',
         'RainbowDelimiterGreen',
-        'RainbowDelimiterViolet',
         'RainbowDelimiterCyan',
+        'RainbowDelimiterViolet',
+        'RainbowDelimiterOrange',
+        'RainbowDelimiterBlue',
+        'RainbowDelimiterRed',
     },
 }
 
@@ -333,11 +333,13 @@ cmp.setup({
         ['<Down>'] = cmp.mapping.select_next_item(),
         ['<CR>'] = cmp.mapping.confirm({ select = true }),
         ['<C-Space>'] = cmp.mapping.complete(),
+        ['<C-p>'] = cmp.mapping.select_prev_item(),
+        ['<C-n>'] = cmp.mapping.select_next_item(),
+        ['<C-y>'] = cmp.mapping.confirm({ select = true }),
     },
     sources = {
         { name = 'nvim_lsp' },
         { name = 'buffer' },
-        -- You can add more sources here
     },
 })
 
