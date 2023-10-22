@@ -246,7 +246,7 @@ local lspconfig = require('lspconfig')
 
 -- Doge
 vim.g.doge_doc_standard_python = 'google'
-vim.api.nvim_set_keymap('n', '<Leader>g', '<Plug>(doge-generate)', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>d', '<Plug>(doge-generate)', { noremap = true, silent = true })
 
 -- Set up pyright for Python
 lspconfig.pyright.setup({
@@ -436,7 +436,7 @@ vim.cmd('autocmd FileType python cd %:p:h')
 
 -- DEBUGGING
 -- Start debugging
-vim.api.nvim_set_keymap('n', '<leader>d', '<Cmd>lua require"dap".continue()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>db', '<Cmd>lua require"dap".continue()<CR>', { noremap = true, silent = true })
 
 -- Set breakpoint
 vim.api.nvim_set_keymap('n', '\\b', '<Cmd>lua require"dap".toggle_breakpoint()<CR>', { noremap = true, silent = true })
