@@ -37,7 +37,7 @@ vim.cmd [[
   " Treesitter
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   " Rainbow
-  Plug 'https://gitlab.com/HiPhish/rainbow-delimiters.nvim.git' 
+  Plug 'https://gitlab.com/HiPhish/rainbow-delimiters.nvim.git'
   " Harpoon
   Plug 'ThePrimeagen/harpoon'
   " Undo
@@ -139,54 +139,54 @@ vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 
 vim.keymap.set('n', '<leader>ps', function()
-    builtin.grep_string({ search = vim.fn.input("Grep > " )})
+    builtin.grep_string({ search = vim.fn.input("Grep > ") })
 end)
 
 -- Treesitter
-require'nvim-treesitter.configs'.setup {
-  -- A list of parser names, or "all"
-  ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "python", "typescript", "javascript", "rust"},
+require 'nvim-treesitter.configs'.setup {
+    -- A list of parser names, or "all"
+    ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "python", "typescript", "javascript", "rust" },
 
-  -- Install parsers synchronously (only applied to `ensure_installed`)
-  sync_install = false,
+    -- Install parsers synchronously (only applied to `ensure_installed`)
+    sync_install = false,
 
-  -- Automatically install missing parsers when entering buffer
-  -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
-  auto_install = true,
+    -- Automatically install missing parsers when entering buffer
+    -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
+    auto_install = true,
 
-  -- List of parsers to ignore installing (or "all")
-  -- ignore_install = { "javascript" },
+    -- List of parsers to ignore installing (or "all")
+    -- ignore_install = { "javascript" },
 
-  ---- If you need to change the installation directory of the parsers (see -> Advanced Setup)
-  -- parser_install_dir = "/some/path/to/store/parsers", -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
+    ---- If you need to change the installation directory of the parsers (see -> Advanced Setup)
+    -- parser_install_dir = "/some/path/to/store/parsers", -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
 
-  highlight = {
-    enable = true,
+    highlight = {
+        enable = true,
 
-    -- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
-    -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
-    -- the name of the parser)
-    -- list of language that will be disabled
-    -- disable = { "python" },
-    -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
-    -- disable = function(lang, buf)
-    --     local max_filesize = 100 * 1024 -- 100 KB
-    --     local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-    --     if ok and stats and stats.size > max_filesize then
-    --         return true
-    --     end
-    -- end,
+        -- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
+        -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
+        -- the name of the parser)
+        -- list of language that will be disabled
+        -- disable = { "python" },
+        -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
+        -- disable = function(lang, buf)
+        --     local max_filesize = 100 * 1024 -- 100 KB
+        --     local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+        --     if ok and stats and stats.size > max_filesize then
+        --         return true
+        --     end
+        -- end,
 
-    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-    -- Using this option may slow down your editor, and you may see some duplicate highlights.
-    -- Instead of true it can also be a list of languages
-    additional_vim_regex_highlighting = false,
-  },
+        -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+        -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+        -- Using this option may slow down your editor, and you may see some duplicate highlights.
+        -- Instead of true it can also be a list of languages
+        additional_vim_regex_highlighting = false,
+    },
 
-  indent = {
-    enable = true, 
-  },
+    indent = {
+        enable = true,
+    },
 }
 
 -- Auto-pairing
@@ -252,15 +252,15 @@ vim.g.doge_enable_mappings = 0
 vim.g.doge_doc_standard_python = 'google'
 vim.api.nvim_set_keymap('n', '<Leader>g', '<Plug>(doge-generate)', { noremap = true, silent = true })
 
--- Interactive mode comment todo-jumping 
+-- Interactive mode comment todo-jumping
 vim.api.nvim_set_keymap('n', '<TAB>', '<Plug>(doge-comment-jump-forward)', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('i', '<TAB>', '<Plug>(doge-comment-jump-forward)', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('s', '<TAB>', '<Plug>(doge-comment-jump-forward)', { noremap = true, silent = true })
 
--- Set up pyright for Python
-lspconfig.pyright.setup({
+-- Set up lua language server
+lspconfig.lua_ls.setup({
     on_attach = function(client, bufnr)
-        local opts = { noremap=true, silent=true }
+        local opts = { noremap = true, silent = true }
 
         -- Key mappings for LSP functionalities
         local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
@@ -268,30 +268,79 @@ lspconfig.pyright.setup({
         -- Definitions and declarations
         buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
         buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-        
+
         -- Hover and implementations
         buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
         buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-        
+
         -- Signature help
         buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-        
+
         -- Workspace folders
         buf_set_keymap('n', '<leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
         buf_set_keymap('n', '<leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
         buf_set_keymap('n', '<leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-        
+
         -- Type definitions, rename, references, and code actions
         buf_set_keymap('n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
         buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
         buf_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
         buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-        
+
         -- Diagnostics navigation and float window
         buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
         buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
         buf_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-        
+
+        -- Formatting
+        buf_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.format({ async = true })<CR>', opts)
+    end,
+    -- Settings
+    settings = {
+        Lua = {
+            diagnostics = {
+                globals = { 'vim' }
+            }
+        }
+    }
+})
+
+
+-- Set up pyright for Python
+lspconfig.pyright.setup({
+    on_attach = function(client, bufnr)
+        local opts = { noremap = true, silent = true }
+
+        -- Key mappings for LSP functionalities
+        local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+
+        -- Definitions and declarations
+        buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+        buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+
+        -- Hover and implementations
+        buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+        buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+
+        -- Signature help
+        buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+
+        -- Workspace folders
+        buf_set_keymap('n', '<leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+        buf_set_keymap('n', '<leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+        buf_set_keymap('n', '<leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+
+        -- Type definitions, rename, references, and code actions
+        buf_set_keymap('n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+        buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+        buf_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+        buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+
+        -- Diagnostics navigation and float window
+        buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+        buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+        buf_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+
         -- Formatting
         buf_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.format({ async = true })<CR>', opts)
     end
@@ -300,7 +349,7 @@ lspconfig.pyright.setup({
 -- Set up tsserver for TS/JS
 lspconfig.tsserver.setup({
     on_attach = function(client, bufnr)
-        local opts = { noremap=true, silent=true }
+        local opts = { noremap = true, silent = true }
 
         -- Key mappings for LSP functionalities
         local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
@@ -308,30 +357,30 @@ lspconfig.tsserver.setup({
         -- Definitions and declarations
         buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
         buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-        
+
         -- Hover and implementations
         buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
         buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-        
+
         -- Signature help
         buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-        
+
         -- Workspace folders
         buf_set_keymap('n', '<leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
         buf_set_keymap('n', '<leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
         buf_set_keymap('n', '<leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-        
+
         -- Type definitions, rename, references, and code actions
         buf_set_keymap('n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
         buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
         buf_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
         buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-        
+
         -- Diagnostics navigation and float window
         buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
         buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
         buf_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-        
+
         -- Formatting
         buf_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.format({ async = true })<CR>', opts)
     end
@@ -339,7 +388,7 @@ lspconfig.tsserver.setup({
 
 lspconfig.rust_analyzer.setup({
     on_attach = function(client, bufnr)
-        local opts = { noremap=true, silent=true }
+        local opts = { noremap = true, silent = true }
 
         -- Key mappings for LSP functionalities
         local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
@@ -347,30 +396,30 @@ lspconfig.rust_analyzer.setup({
         -- Definitions and declarations
         buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
         buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-        
+
         -- Hover and implementations
         buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
         buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-        
+
         -- Signature help
         buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-        
+
         -- Workspace folders
         buf_set_keymap('n', '<leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
         buf_set_keymap('n', '<leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
         buf_set_keymap('n', '<leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-        
+
         -- Type definitions, rename, references, and code actions
         buf_set_keymap('n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
         buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
         buf_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
         buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-        
+
         -- Diagnostics navigation and float window
         buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
         buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
         buf_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-        
+
         -- Formatting
         buf_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.format({ async = true })<CR>', opts)
     end
@@ -401,44 +450,44 @@ cmp.setup({
 
 -- LUALINE
 require('lualine').setup {
-  options = {
-    icons_enabled = true,
-    theme = 'rose-pine',
-    component_separators = { left = '', right = ''},
-    section_separators = { left = '', right = ''},
-    disabled_filetypes = {
-      statusline = {},
-      winbar = {},
+    options = {
+        icons_enabled = true,
+        theme = 'rose-pine',
+        component_separators = { left = '', right = '' },
+        section_separators = { left = '', right = '' },
+        disabled_filetypes = {
+            statusline = {},
+            winbar = {},
+        },
+        ignore_focus = {},
+        always_divide_middle = true,
+        globalstatus = false,
+        refresh = {
+            statusline = 1000,
+            tabline = 1000,
+            winbar = 1000,
+        }
     },
-    ignore_focus = {},
-    always_divide_middle = true,
-    globalstatus = false,
-    refresh = {
-      statusline = 1000,
-      tabline = 1000,
-      winbar = 1000,
-    }
-  },
-  sections = {
-    lualine_a = {'mode'},
-    lualine_b = {'branch', 'diff', 'diagnostics'},
-    lualine_c = {'filename'},
-    lualine_x = {'encoding', 'fileformat', 'filetype'},
-    lualine_y = {'progress'},
-    lualine_z = {'location'}
-  },
-  inactive_sections = {
-    lualine_a = {},
-    lualine_b = {},
-    lualine_c = {'filename'},
-    lualine_x = {'location'},
-    lualine_y = {},
-    lualine_z = {}
-  },
-  tabline = {},
-  winbar = {},
-  inactive_winbar = {},
-  extensions = {}
+    sections = {
+        lualine_a = { 'mode' },
+        lualine_b = { 'branch', 'diff', 'diagnostics' },
+        lualine_c = { 'filename' },
+        lualine_x = { 'encoding', 'fileformat', 'filetype' },
+        lualine_y = { 'progress' },
+        lualine_z = { 'location' }
+    },
+    inactive_sections = {
+        lualine_a = {},
+        lualine_b = {},
+        lualine_c = { 'filename' },
+        lualine_x = { 'location' },
+        lualine_y = {},
+        lualine_z = {}
+    },
+    tabline = {},
+    winbar = {},
+    inactive_winbar = {},
+    extensions = {}
 }
 
 
@@ -472,13 +521,17 @@ local function get_git_root()
 end
 
 -- Run pylint on the current file
-vim.api.nvim_set_keymap('n', '<leader>pl', ':belowright split | terminal pylint --rcfile=' .. get_git_root() .. '/pyproject.toml %<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>pl',
+    ':belowright split | terminal pylint --rcfile=' .. get_git_root() .. '/pyproject.toml %<CR>',
+    { noremap = true, silent = true })
 
 -- Run pydocstyle on the current file with the Google convention
-vim.api.nvim_set_keymap('n', '<leader>pd', ':belowright split | terminal pydocstyle --convention=google %<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>pd', ':belowright split | terminal pydocstyle --convention=google %<CR>',
+    { noremap = true, silent = true })
 
 -- Run black on the current file
-vim.api.nvim_set_keymap('n', '<leader>bl', ':!black --config ' .. get_git_root() .. '/pyproject.toml %<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>bl', ':!black --config ' .. get_git_root() .. '/pyproject.toml %<CR>',
+    { noremap = true, silent = true })
 
 -- Automatically change the working directory to the directory of the current Python file whenever a new Python file is opened
 vim.cmd('autocmd FileType python cd %:p:h')
@@ -511,20 +564,18 @@ require('dap-python').setup('')
 require('dap-python').test_runner = 'pytest'
 require("nvim-dap-virtual-text").setup()
 require("neodev").setup({
-  library = { plugins = { "nvim-dap-ui" }, types = true },
+    library = { plugins = { "nvim-dap-ui" }, types = true },
 })
 
 -- UI
 local dap, dapui = require("dap"), require("dapui")
 dapui.setup()
 dap.listeners.after.event_initialized["dapui_config"] = function()
-  dapui.open()
+    dapui.open()
 end
 dap.listeners.before.event_terminated["dapui_config"] = function()
-  dapui.close()
+    dapui.close()
 end
 dap.listeners.before.event_exited["dapui_config"] = function()
-  dapui.close()
+    dapui.close()
 end
-
-
