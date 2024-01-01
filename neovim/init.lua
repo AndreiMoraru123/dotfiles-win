@@ -18,7 +18,7 @@ vim.cmd [[
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
   " Theme
-  Plug 'EdenEast/nightfox.nvim'
+  Plug 'rose-pine/neovim'
   " Highlighted yank
   Plug 'machakann/vim-highlightedyank'
   " Comments
@@ -78,14 +78,17 @@ vim.cmd [[
 
 -- Color scheme background compatibility
 vim.cmd [[
-  au ColorScheme nightfox hi Normal ctermbg=none guibg=none
-  colorscheme nightfox
+  au ColorScheme rose-pine hi Normal ctermbg=none guibg=none
+  colorscheme rose-pine
 ]]
 
 -- Key mappings
 vim.g.mapleader = " "
 vim.api.nvim_set_keymap('n', '<leader>pv', ':Vex<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader><CR>', ':so C:/Users/Andrei/AppData/Local/nvim/init.lua<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader><CR>', ':so ~/.config/nvim/init.lua<CR>', { noremap = true, silent = true })
+
+-- Sneak
+vim.g['sneak#label'] = 1
 
 -- For vnoremap commands
 vim.api.nvim_set_keymap('v', 'J', ':m \'>+1<CR>gv=gv', { noremap = true, silent = true })
@@ -142,7 +145,7 @@ end)
 -- Treesitter
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
-  ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "python", "typescript", "javascript"},
+  ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "python", "typescript", "javascript", "rust"},
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
@@ -212,15 +215,15 @@ vim.g.rainbow_delimiters = {
     },
 }
 
--- Set the autocommand for Nightfox color integration
+-- Set the autocommand for Rosepine color integration
 vim.cmd [[
-  au ColorSchemePre nightfox highlight link RainbowDelimiterRed NightfoxRed
-  au ColorSchemePre nightfox highlight link RainbowDelimiterYellow NightfoxYellow
-  au ColorSchemePre nightfox highlight link RainbowDelimiterBlue NightfoxBlue
-  au ColorSchemePre nightfox highlight link RainbowDelimiterOrange NightfoxOrange
-  au ColorSchemePre nightfox highlight link RainbowDelimiterGreen NightfoxGreen
-  au ColorSchemePre nightfox highlight link RainbowDelimiterViolet NightfoxViolet
-  au ColorSchemePre nightfox highlight link RainbowDelimiterCyan NightfoxCyan
+  au ColorSchemePre rose-pine highlight link RainbowDelimiterRed RosepineRed
+  au ColorSchemePre rose-pine highlight link RainbowDelimiterYellow RosepineYellow
+  au ColorSchemePre rose-pine highlight link RainbowDelimiterBlue RosepineBlue
+  au ColorSchemePre rose-pine highlight link RainbowDelimiterOrange RosepineOrange
+  au ColorSchemePre rose-pine highlight link RainbowDelimiterGreen RosepineGreen
+  au ColorSchemePre rose-pine highlight link RainbowDelimiterViolet RosepineViolet
+  au ColorSchemePre rose-pine highlight link RainbowDelimiterCyan RosepineCyan
 ]]
 
 -- Harpoon
@@ -337,6 +340,46 @@ lspconfig.tsserver.setup({
     end
 })
 
+lspconfig.rust_analyzer.setup({
+    on_attach = function(client, bufnr)
+        local opts = { noremap=true, silent=true }
+
+        -- Key mappings for LSP functionalities
+        local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+
+        -- Definitions and declarations
+        buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+        buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+        
+        -- Hover and implementations
+        buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+        buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+        
+        -- Signature help
+        buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+        
+        -- Workspace folders
+        buf_set_keymap('n', '<leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+        buf_set_keymap('n', '<leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+        buf_set_keymap('n', '<leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+        
+        -- Type definitions, rename, references, and code actions
+        buf_set_keymap('n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+        buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+        buf_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+        buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+        
+        -- Diagnostics navigation and float window
+        buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+        buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+        buf_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+        
+        -- Formatting
+        buf_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.format({ async = true })<CR>', opts)
+    end
+})
+
+
 -- Autocompletion with nvim-cmp
 local cmp = require('cmp')
 cmp.setup({
@@ -363,7 +406,7 @@ cmp.setup({
 require('lualine').setup {
   options = {
     icons_enabled = true,
-    theme = 'nightfox',
+    theme = 'rose-pine',
     component_separators = { left = '', right = ''},
     section_separators = { left = '', right = ''},
     disabled_filetypes = {
