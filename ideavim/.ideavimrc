@@ -124,4 +124,5 @@ nmap 5 :action GotoHarpoon5<CR>
 nmap <C-e> :action ShowHarpoon<CR>
 
 " Add current file to Harpoon
-nmap <C-a> :action AddToHarpoon<CR>
+nmap <leader>a :action AddToHarpoon<CR>
+
