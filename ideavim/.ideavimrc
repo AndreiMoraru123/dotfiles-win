@@ -12,6 +12,9 @@ set scrolloff=5
 " Do incremental searching.
 set incsearch
 
+" No noise
+set visualbell
+
 " Smart Join
 set ideajoin
 
@@ -77,9 +80,6 @@ map <leader>xp <Action>(ExpandPythonTypeAnnotations)
 
 "" Collapse python type annotations
 map <leader>cl <Action>(CollapsePythonTypeAnnotations)
-
-"" Show documentation pop-up
-map <leader>q <Action>(QuickJavaDoc)
 
 "" Stop execution
 map <leader>s <Action>(Stop)
