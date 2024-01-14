@@ -63,11 +63,11 @@ map <leader>d <Action>(Debug)
 "" Map \b to toggle the breakpoint on the current line
 map \b <Action>(ToggleLineBreakpoint)
 
-"" Map <leader>/ to show error hovering around the cursor
-nmap <leader>/ <Action>(ShowErrorDescription)
+"" Map <leader>e to show error hovering around the cursor
+nmap <leader>e <Action>(ShowErrorDescription)
 
-"" Map <leader>e to go to next error
-nmap <leader>e <Action>(GotoNextError)
+"" Map <leader>ne to go to next error
+nmap <leader>ne <Action>(GotoNextError)
 
 "" Run python console with the file's locals
 map <leader>pr <Action>(PyRunFileInConsole)
