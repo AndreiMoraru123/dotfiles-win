@@ -70,7 +70,7 @@ nmap <leader>e <Action>(ShowErrorDescription)
 nmap <leader>ne <Action>(GotoNextError)
 
 "" Run python console with the file's locals
-map <leader>pr <Action>(PyRunFileInConsole)
+map <leader>py <Action>(PyRunFileInConsole)
 
 "" New python file (opens in user folder)
 map <leader>pf <Action>(NewPythonFile)
