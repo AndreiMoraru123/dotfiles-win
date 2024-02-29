@@ -82,7 +82,7 @@ map <leader>xp <Action>(ExpandPythonTypeAnnotations)
 map <leader>cl <Action>(CollapsePythonTypeAnnotations)
 
 "" Stop execution
-map <leader>s <Action>(Stop)
+map <leader>q <Action>(Stop)
 
 " Move lines up/down with SHIFT + K/J
 vnoremap J :m '>+1<CR>gv=gv
@@ -125,4 +125,3 @@ nmap <C-e> :action ShowHarpoon<CR>
 
 " Add current file to Harpoon
 nmap <leader>a :action AddToHarpoon<CR>
-
