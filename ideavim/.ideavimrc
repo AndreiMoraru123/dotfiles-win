@@ -106,6 +106,9 @@ nnoremap <Leader>u viwU
 "" Lowercase the whole word
 nnoremap <Leader>l viwu
 
+"" Accept autocomplete suggestion
+imap <C-y> <Action>(EditorChooseLookupItem)
+
 " Set Harpoon targets
 nmap <Leader>1 :action SetHarpoon1<CR>
 nmap <Leader>2 :action SetHarpoon2<CR>
