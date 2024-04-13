@@ -109,6 +109,9 @@ nnoremap <Leader>l viwu
 "" Accept autocomplete suggestion
 imap <C-y> <Action>(EditorChooseLookupItem)
 
+" Go to symbol
+nmap gO <Action>(GotoSymbol)
+
 " Set Harpoon targets
 nmap <Leader>1 :action SetHarpoon1<CR>
 nmap <Leader>2 :action SetHarpoon2<CR>
