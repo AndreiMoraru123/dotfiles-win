@@ -110,6 +110,16 @@ source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 alias vim=nvim
 alias pypy=pypy3
 
+# Unset DISPLAY to prevent X11 clipboard attempts
+unset DISPLAY
+
+# WSL clipboard configuration
+if grep -q "WSL" /proc/version &> /dev/null; then
+    export CLIPBOARD="clip.exe"
+    alias pbcopy="clip.exe"
+    alias pbpaste="powershell.exe Get-Clipboard"
+fi
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
