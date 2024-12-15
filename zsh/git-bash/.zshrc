@@ -19,7 +19,7 @@ ZSH_THEME="robbyrussell"
 
 alias vim=nvim
 export PYTHONIOENCODING=utf8
-export ANACONDA_PATH="/c/Program Files/Anaconda3"
+export ANACONDA_PATH="/cygdrive/c/Users/Andrei/anaconda3"
 export PATH="$ANACONDA_PATH:$ANACONDA_PATH/Scripts:$ANACONDA_PATH/bin:$PATH"
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
